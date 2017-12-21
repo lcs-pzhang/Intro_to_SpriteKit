@@ -25,6 +25,10 @@ let nyanCat = SKSpriteNode(imageNamed: "Nyancat")
 nyanCat.position = midPoint
 nyanCat.setScale(8.0)
 
+let toad = SKSpriteNode(imageNamed: "toad")
+toad.position = CGPoint(x: 250, y: 180)
+scene.addChild(toad)
+toad.setScale(0.25)
 //: To show how happy Nyan Cat is, let's run an action that repeats a sequence of Nyan Cat going up and down forever.
 let actionMoveUp = SKAction.moveBy(x: 0, y: 10, duration: 0.15)
 let actionMoveDown = SKAction.moveBy(x: 0, y: -10, duration: 0.15)
@@ -33,6 +37,14 @@ let actionRepeat = SKAction.repeatForever(actionSequence)
 nyanCat.run(actionRepeat)
 nyanCat.zPosition = 10  // Ensure sprite is above background
 scene.addChild(nyanCat) // Add to the scene
+
+let actionRotate = SKAction.rotate(byAngle: 360, duration: 1)
+let actionMoveLeft = SKAction.moveBy(x: 50, y: 180, duration: 1)
+let actionMoveRight = SKAction.moveBy(x: 250, y: 180, duration: 1)
+let actionSequence = SKAction.sequence([actionRotate, actionMoveLeft, actionMoveRight])
+let actionRepeatRotation = SKAction.repeatForever(actionSequence)
+toad.run(actionRepeat)
+toad.zPosition = 5
 
 //: Now show the scene within an SKView instance in the live view area
 let view = SKView(frame: frame)
